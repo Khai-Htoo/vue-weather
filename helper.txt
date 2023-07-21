@@ -1,0 +1,3 @@
+apikey = 243e499099e8448046bae401797a71b7
+https://api.openweathermap.org/data/2.5/
+weather?lat={lat}&lon={lon}&appid={API key}

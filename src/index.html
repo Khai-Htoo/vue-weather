@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Weather</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section id="app">
+        <div class="bg"
+            :class="typeof weather.main != 'undefined' && weather.weather[0].main == 'Rain' ? 'rain' : 'cold' ">
+            <div class=" bg-form">
+                <form @submit.prevent="getWeather">
+                    <div class="search">
+                        <input type="text" class="serachBox" placeholder="Search Location" v-model="searchQuery">
+                        <lord-icon class="icon" @click="getWeather" src="https://cdn.lordicon.com/xfftupfv.json"
+                            trigger="hover" colors="primary:#ffffff" style="width:30px;height:35px">
+                        </lord-icon>
+                    </div>
+                </form>
+                <div v-if="typeof weather.main != 'undefined' && isError ">
+                    <h4 class="location">{{weather.name}} ({{weather.sys.country}})</h4>
+                    <h3>{{getCurrentDate()}}</h3>
+                    <div class="bg-glass ">
+                        <h1>{{Math.round(weather.main.temp)}}°<span>C</span></h1>
+                    </div>
+                    <h5>{{weather.weather[0].main}}</h5>
+                </div>
+                <div v-else-if="!isError">{{errorMsg}}</div>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- vue cdn -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!-- lordicon -->
+<script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+<script src="./index.js">
+</script>
+
+</html>
